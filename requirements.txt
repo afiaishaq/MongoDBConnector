@@ -1,0 +1,24 @@
+# MongoDB Python driver
+pymongo
+
+# Required for MongoDB Atlas SRV connection strings
+pymongo[srv]
+
+# DNS support used by pymongo[srv] for Atlas clusters
+dnspython
+
+# Data manipulation and analysis library
+pandas
+
+# Numerical computing library used in ML pipelines
+numpy
+
+# Library used for runtime type validation
+ensure
+
+# Testing framework for writing unit tests
+pytest
+
+# Install this project as a local package
+# Allows imports like: from src.database.mongodb_connection import get_mongo_client
+-e .
