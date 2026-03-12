@@ -21,18 +21,23 @@ def get_requirements(file_path: str) -> List[str]:
 
     requirements = []
 
-    # Open the requirements file
-    with open(file_path) as f:
+    try:
+        # Open the requirements file
+        with open(file_path) as f:
 
-        # Read all lines from the file
-        requirements = f.readlines()
+            # Read all lines from the file
+            requirements = f.readlines()
 
-        # Remove newline characters (\n)
-        requirements = [req.replace("\n", "") for req in requirements]
+            # Remove newline characters (\n)
+            requirements = [req.replace("\n", "") for req in requirements]
 
-        # Remove "-e ." because it should not be passed to install_requires
-        if HYPEN_E_DOT in requirements:
-            requirements.remove(HYPEN_E_DOT)
+            # Remove "-e ." because it should not be passed to install_requires
+            if HYPEN_E_DOT in requirements:
+                requirements.remove(HYPEN_E_DOT)
+
+    except FileNotFoundError:
+        # If requirements.txt is not found during build
+        return []
 
     # Return the cleaned list of requirements
     return requirements
@@ -41,22 +46,23 @@ def get_requirements(file_path: str) -> List[str]:
 # setup() function defines package metadata and configuration
 setup(
 
-    # Name of the project package
-    name="mlops_project",
+    # Name of the project package (this is the PyPI package name)
+    name="mongodbconnector",
 
     # Version of the package
     version="0.0.1",
 
-    # Author name
+    # Author information
     author="Afia Ishaq",
+    author_email="afia.ishaq@riphah.edu.pk",
 
-    # Author email
-    author_email="your_email@gmail.com",
+    # IMPORTANT for src layout
+    # This tells Python that packages are inside the src folder
+    packages=find_packages(where="src"),
 
-    # Automatically find all packages inside the project
-    # Example: src/components, src/database, src/utils
-    packages=find_packages(),
+    # Map root package directory to src
+    package_dir={"": "src"},
 
     # Install dependencies listed in requirements.txt
-    install_requires=get_requirements("requirements.txt")
+    install_requires=get_requirements("requirements.txt"),
 )
