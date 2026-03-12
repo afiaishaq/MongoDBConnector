@@ -47,7 +47,7 @@ def get_requirements(file_path: str) -> List[str]:
 setup(
 
     # Name of the project package (this is the PyPI package name)
-    name="mongodbconnector",
+    name="afia-mongodbconnector",
 
     # Version of the package
     version="0.0.1",
