@@ -4,12 +4,28 @@
 #############################################
 
 [build-system]
-
-# Tools required to build the project
 requires = ["setuptools>=42.0", "wheel"]
-
-# Backend used to build the Python package
 build-backend = "setuptools.build_meta"
+
+
+
+#############################################
+
+[project]
+
+name = "mongodbconnector"
+version = "0.0.1"
+description = "A reusable MongoDB connector and CRUD utility for Python applications"
+readme = "README.md"
+requires-python = ">=3.8"
+
+authors = [
+    { name="Afia Ishaq", email="afia.ishaq@riphah.edu.pk" }
+]
+
+dependencies = [
+    "pymongo"
+]
 
 
 
@@ -17,13 +33,8 @@ build-backend = "setuptools.build_meta"
 
 [tool.pytest.ini_options]
 
-# Minimum pytest version required
 minversion = "6.0"
-
-# Additional pytest command line options
 addopts = "-ra -q"
-
-# Directory where pytest should look for tests
 testpaths = [
     "tests"
 ]
@@ -34,8 +45,5 @@ testpaths = [
 
 [tool.mypy]
 
-# Directory where source code exists
 mypy_path = "src"
-
-# Ignore missing type hints from external libraries
 ignore_missing_imports = true
